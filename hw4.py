@@ -65,9 +65,11 @@ def getAnagrams(word):
   return anagrams
 
 def main(scrambled, anagrams):
-  if scrambled and not anagrams:
-    print('\n~~~You won!~~~\n')
-    return
+  if scrambled:
+    for x in range(len(anagrams)):
+      if not anagrams[x]:
+        print('~~~You Win!~~~')
+        return
   if not scrambled:
     word = getWord(6, randint(1, getWordLenAmount(6)+1))
     scrambled = scrambleWord(word)
@@ -83,8 +85,13 @@ def main(scrambled, anagrams):
   guess = input('\nEnter a guess: ')
   if guess == 'q':
     print('\nYou gave up.\nThe anagrams are:')
-    print(anagrams)
-  elif len(guess) <= len(scrambled):
+    newAnagrams = []
+    for i in range(len(anagrams)):
+      for j in range(len(anagrams[i])):
+        newAnagrams.append(anagrams[i][j])
+    print(newAnagrams)
+    return
+  if len(guess) <= len(scrambled):
     hasMatch = False
     for anagram in anagrams[len(guess)-3]:
       if anagram == guess:
@@ -101,3 +108,5 @@ def main(scrambled, anagrams):
       
 
 main('', [])
+
+# main('win', getAnagrams('win'))
