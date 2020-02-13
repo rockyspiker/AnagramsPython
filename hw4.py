@@ -66,8 +66,17 @@ def getAnagrams(word):
 
 def main(scrambled, anagrams):
   if scrambled:
-    for x in range(len(anagrams)):
-      if not anagrams[x]:
+    anagramBool = []
+    for x in range(len(anagrams)):     
+      if anagrams[x]:
+        anagramBool.append(False)
+      else:
+        anagramBool.append(True)
+    isEmpty = True
+    for x in anagramBool:
+      if x == False:
+        isEmpty = False
+    if isEmpty == True:
         print('~~~You Win!~~~')
         return
   if not scrambled:
